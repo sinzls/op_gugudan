@@ -4,60 +4,61 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GuGuBody {
-	public void sw(GGInterface gg) {
+	public void oeGGD(GGInterface gg) {
 		gg.gudan();
 	}
-
+	public void input(GGInterface gg) {
+		gg.inputGudan();
+	}
+	
 	public static void main(String[] args) {
 		ArrayList<Integer> str = new ArrayList<Integer>();
 		Scanner scan = new Scanner(System.in);
+		GuGuDan dan = new GuGuDan();
 		GuGuBody body = new GuGuBody();
+		EvenGGD eggd = new EvenGGD();
+		OddGGD oggd = new OddGGD();
 		int i =0;
-		Dan1 dan1 = new Dan1();
-		Dan2 dan2 = new Dan2();
-		Dan3 dan3 = new Dan3();
-		Dan4 dan4 = new Dan4();
-		Dan5 dan5 = new Dan5();
-		Dan6 dan6 = new Dan6();
-		Dan7 dan7 = new Dan7();
-		Dan8 dan8 = new Dan8();
-		Dan9 dan9 = new Dan9();
-		System.out.print("출력하고 싶은 구구단을 입력하세요 : ");
+
 		while(true) {
+			System.out.print("출력하고 싶은 구구단을 선택하세요.\r");
+			System.out.print("홀수단 출력 : 1\r");
+			System.out.print("짝수단 출력 : 2\r");
+			System.out.print("직접 입력한 숫자단 출력 : 3\r");
+			System.out.print("직접 입력한 홀수단 출력 : 4\r");
+			System.out.print("직접 입력한 짝수단 출력 : 5\n\r");
 			str.add(Integer.parseInt(scan.next()));
-			switch(str.get(i++)) {
-			case 1:
-				body.sw(dan1);
-				break;
-			case 2:
-				body.sw(dan2);
-				break;
-			case 3:
-				body.sw(dan3);
-				break;
-			case 4:
-				body.sw(dan4);
-				break;
-			case 5:
-				body.sw(dan5);
-				break;
-			case 6:
-				body.sw(dan6);
-				break;
-			case 7:
-				body.sw(dan7);
-				break;
-			case 8:
-				body.sw(dan8);
-				break;
-			case 9:
-				body.sw(dan9);
-				break;
-			default:
-				
-				System.out.println("1~9사이의 단을 입력해주세요.");
-				break;
+			switch(str.get(i)) {
+				case 1:
+					body.oeGGD(oggd);
+					break;
+				case 2:
+					body.oeGGD(eggd);
+					break;
+				case 3:
+					i++;
+					System.out.print("출력을 원하는 숫자를 입력하세요.");
+					str.add(Integer.parseInt(scan.next()));
+					dan.gudan(str.get(i));
+					break;
+				case 4:
+					i++;
+					System.out.print("출력을 원하는 숫자를 입력하세요.");
+					str.add(Integer.parseInt(scan.next()));
+					oggd.setDan(str.get(i));
+					body.input(oggd);
+					break;
+				case 5:
+					i++;
+					System.out.print("출력을 원하는 숫자를 입력하세요.");
+					str.add(Integer.parseInt(scan.next()));
+					eggd.setDan(str.get(i));
+					body.input(eggd);
+					break;
+				default:
+					break;
 			}
+			i++;
 		}
 	}
 }
